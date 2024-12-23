@@ -43,7 +43,7 @@ jobs:
       - name: Assemble
         uses: jreleaser/release-action@v2
         with:
-          arguments: assemble
+          arguments: assemble -g
           version: early-access
         env:
           JRELEASER_PROJECT_VERSION: ${{ steps.vars.outputs.VERSION }}
@@ -62,4 +62,4 @@ jobs:
       - name: Artifacts
         if: always()
         run: |
-          ls -lR out/jreleaser/assemble/helloworld/jpackage
+          dir /s /b out/jreleaser/assemble/helloworld/jpackage
