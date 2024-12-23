@@ -58,8 +58,3 @@ jobs:
           path: |
             out/jreleaser/trace.log
             out/jreleaser/output.properties
-
-      - name: Artifacts
-        if: always()
-        run: |
-          dir /s /b out\jreleaser\assemble\helloworld\jpackage

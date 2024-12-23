@@ -94,10 +94,10 @@
       <CustomAction Id="JpSetARPURLUPDATEINFO" Property="ARPURLUPDATEINFO" Value="$(var.JpUpdateURL)" />
     <?endif?>
 
-    <?ifdef JpIcon ?>
+    <!--?ifdef JpIcon ?>
     <Property Id="ARPPRODUCTICON" Value="JpARPPRODUCTICON"/>
     <Icon Id="JpARPPRODUCTICON" SourceFile="$(var.JpIcon)"/>
-    <?endif?>
+    <?endif?-->
 
     <UIRef Id="JpUI"/>
 
