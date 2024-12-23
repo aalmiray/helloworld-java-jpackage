@@ -1,0 +1,65 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  JAVA_VERSION: '17'
+  JAVA_DISTRO: 'zulu'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cancel previous run
+        uses: styfle/cancel-workflow-action@0.12.1
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRO }}
+          cache: maven
+
+      - name: Version
+        id: vars
+        shell: bash
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
+
+      - name: Setup JDKs
+        run: ./mvnw -ntp -B -q --file pom.xml -Pjdks
+        
+      - name: Build
+        run: ./mvnw -ntp -B --file pom.xml verify
+
+      - name: Assemble
+        uses: jreleaser/release-action@v2
+        with:
+          arguments: assemble
+          version: early-access
+        env:
+          JRELEASER_PROJECT_VERSION: ${{ steps.vars.outputs.VERSION }}
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: JReleaser output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          retention-days: 1
+          name: jreleaser-assemble
+          path: |
+            out/jreleaser/trace.log
+            out/jreleaser/output.properties
+
+      - name: Artifacts
+        if: always()
+        run: |
+          ls -lR out/jreleaser/assemble/helloworld/jpackage
