@@ -66,6 +66,8 @@ assemble:
         types: [msi]
         console: true
         dirChooser: true
+        icon: 'src/media/jreleaser.ico'
+        resourceDir: 'src/jpackage/windows'
 
 distributions:
   helloworld:
