@@ -33,8 +33,8 @@
   <properties>
     <app.main.class>org.jreleaser.examples.HelloWorld</app.main.class>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>17</java.version>
-    <jdk.version>17.0.2</jdk.version>
+    <java.version>21</java.version>
+    <jdk.version>21.0.5</jdk.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -96,7 +96,7 @@
             <configuration>
               <pkgs>
                 <pkg>
-                  <name>zulu17WindowsIntel</name>
+                  <name>zuluWindowsIntel</name>
                   <platform>windows-x86_64</platform>
                   <version>${jdk.version}</version>
                 </pkg>

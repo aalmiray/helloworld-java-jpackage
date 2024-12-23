@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  JAVA_VERSION: '17'
+  JAVA_VERSION: '21'
   JAVA_DISTRO: 'zulu'
 
 jobs:
@@ -62,4 +62,4 @@ jobs:
       - name: Artifacts
         if: always()
         run: |
-          dir /s /b out/jreleaser/assemble/helloworld/jpackage
+          dir /s /b out\jreleaser\assemble\helloworld\jpackage
