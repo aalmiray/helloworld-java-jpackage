@@ -92,11 +92,32 @@
           <plugin>
             <groupId>org.jreleaser</groupId>
             <artifactId>jdks-maven-plugin</artifactId>
-            <version>1.15.0</version>
+            <version>1.16.0</version>
             <configuration>
               <pkgs>
                 <pkg>
-                  <name>zuluWindowsIntel</name>
+                  <name>zulu21LinuxArm</name>
+                  <platform>linux-aarch64</platform>
+                  <version>${jdk.version}</version>
+                  <archiveType>tar.gz</archiveType>
+                </pkg>
+                <pkg>
+                  <name>zulu21LinuxIntel</name>
+                  <platform>linux-x86_64</platform>
+                  <version>${jdk.version}</version>
+                </pkg>
+                <pkg>
+                  <name>zulu21OsxIntel</name>
+                  <platform>osx-x86_64</platform>
+                  <version>${jdk.version}</version>
+                </pkg>
+                <pkg>
+                  <name>zulu21OsxArm</name>
+                  <platform>osx-aarch64</platform>
+                  <version>${jdk.version}</version>
+                </pkg>
+                <pkg>
+                  <name>zulu21WindowsIntel</name>
                   <platform>windows-x86_64</platform>
                   <version>${jdk.version}</version>
                 </pkg>
